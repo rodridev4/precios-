@@ -1,25 +1,44 @@
 {
-  "ultima_actualizacion": "2026-08-03T13:18:00-04:00",
+  "ultima_actualizacion": "2026-08-03T15:31:09.988872-04:00",
   "productos": {
     "falabella": {
       "nombre": "iPhone 16e 128GB",
       "tienda": "Falabella",
-      "url": "https://www.falabella.com/falabella-cl",
+      "url": "https://www.falabella.com/falabella-cl/product/prod133540251/Apple-IPhone-16e-128GB/17406441",
       "precio_actual": 529990,
       "historial": [
-        {"fecha": "2026-08-02T10:00:00-04:00", "precio": 549990},
-        {"fecha": "2026-08-03T13:18:00-04:00", "precio": 529990}
+        {
+          "fecha": "2026-08-02T10:00:00-04:00",
+          "precio": 549990
+        },
+        {
+          "fecha": "2026-08-03T13:18:00-04:00",
+          "precio": 529990
+        }
       ]
     },
     "maconline": {
       "nombre": "iPhone 16e 128GB",
       "tienda": "MacOnline",
-      "url": "https://www.maconline.com",
-      "precio_actual": 549990,
+      "url": "https://www.maconline.com/products/iphone-16e#default_sku=MD1Q4BE/A",
+      "precio_actual": 499990,
       "historial": [
-        {"fecha": "2026-08-01T10:00:00-04:00", "precio": 569990},
-        {"fecha": "2026-08-02T15:00:00-04:00", "precio": 549990},
-        {"fecha": "2026-08-03T13:18:00-04:00", "precio": 549990}
+        {
+          "fecha": "2026-08-01T10:00:00-04:00",
+          "precio": 569990
+        },
+        {
+          "fecha": "2026-08-02T15:00:00-04:00",
+          "precio": 549990
+        },
+        {
+          "fecha": "2026-08-03T13:18:00-04:00",
+          "precio": 549990
+        },
+        {
+          "fecha": "2026-08-03T15:31:09.988872-04:00",
+          "precio": 499990
+        }
       ]
     }
   }

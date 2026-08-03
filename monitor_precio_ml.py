@@ -201,7 +201,7 @@ def enviar_whatsapp(mensaje: str) -> None:
 
 def formatear_clp(valor: int) -> str:
     """Formatea número como precio en pesos chilenos."""
-    return f"${valor:,.0f}".replace(",", ".")
+    return f"$ {valor:,.0f}".replace(",", ".")
 
 
 def cargar_datos_dashboard() -> Dict[str, Any]:
