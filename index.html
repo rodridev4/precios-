@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Monitor de Precios - iPhone 16e Chile">
+    <title>Monitor de Precios - iPhone 16e Chile</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">📊</div>
+                <h1>Monitor de Precios</h1>
+                <p class="subtitle">iPhone 16e 128GB · Chile</p>
+                <div class="live-indicator">
+                    <span class="pulse-dot"></span> 
+                    Monitoreando precios
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="summary-section">
+                <div class="summary-bar">
+                    <span id="last-update">Última actualización: cargando...</span>
+                </div>
+            </section>
+            
+            <section class="price-cards">
+                <div id="cards-container" class="cards-grid">
+                    <!-- JS renders cards here -->
+                    <div style="text-align: center; width: 100%; color: var(--text-muted); padding: 2rem;">
+                        Cargando precios...
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section class="chart-section">
+                <h2>📊 Historial de Precios</h2>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section class="history-section">
+                <h2>📋 Registro Detallado</h2>
+                <div class="table-container">
+                    <table id="historyTable">
+                        <!-- JS renders rows -->
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Datos actualizados automáticamente cada 5 minutos</p>
+            <p>Falabella · MacOnline</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js date adapter for time scale -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
