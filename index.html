@@ -7,58 +7,63 @@
     <title>Monitor de Precios - iPhone 16e Chile</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <i data-lucide="activity" class="nav-icon"></i>
+                <span class="nav-title">PriceTracker</span>
+            </div>
+            <div class="live-indicator">
+                <span class="pulse-dot"></span> 
+                Live
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="logo">📊</div>
-                <h1>Monitor de Precios</h1>
-                <p class="subtitle">iPhone 16e 128GB · Chile</p>
-                <div class="live-indicator">
-                    <span class="pulse-dot"></span> 
-                    Monitoreando precios
-                </div>
+        <header class="page-header">
+            <h1>iPhone 16e 128GB</h1>
+            <p class="subtitle">Comparativa de precios en tiempo real para Chile.</p>
+            <div class="summary-bar">
+                <span id="last-update" class="last-update"><i data-lucide="clock"></i> Cargando...</span>
             </div>
         </header>
 
         <main>
-            <section class="summary-section">
-                <div class="summary-bar">
-                    <span id="last-update">Última actualización: cargando...</span>
-                </div>
-            </section>
-            
             <section class="price-cards">
                 <div id="cards-container" class="cards-grid">
                     <!-- JS renders cards here -->
-                    <div style="text-align: center; width: 100%; color: var(--text-muted); padding: 2rem;">
-                        Cargando precios...
+                    <div class="loading-state">
+                        <i data-lucide="loader-2" class="spin-icon"></i>
+                        <p>Sincronizando precios...</p>
                     </div>
                 </div>
             </section>
 
-            <div class="section-divider"></div>
-
             <section class="chart-section">
-                <h2>📊 Historial de Precios</h2>
+                <div class="section-header">
+                    <h2><i data-lucide="trending-up"></i> Historial de Precios</h2>
+                </div>
                 <div class="chart-container">
                     <canvas id="priceChart"></canvas>
                 </div>
             </section>
 
-            <div class="section-divider"></div>
-
             <section class="history-section">
-                <h2>📋 Registro Detallado</h2>
+                <div class="section-header">
+                    <h2><i data-lucide="list"></i> Registro Detallado</h2>
+                </div>
                 <div class="table-container">
                     <table id="historyTable">
                         <!-- JS renders rows -->
@@ -68,14 +73,14 @@
         </main>
 
         <footer>
-            <p>Datos actualizados automáticamente cada 5 minutos</p>
-            <p>Falabella · MacOnline</p>
+            <p>Datos actualizados automáticamente cada hora</p>
+            <p class="footer-brands">Falabella · MacOnline</p>
         </footer>
     </div>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chart.js date adapter for time scale -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="js/app.js"></script>
 </body>

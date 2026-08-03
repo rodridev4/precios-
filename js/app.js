@@ -80,21 +80,28 @@ const renderDashboard = async () => {
         renderChart(data.productos);
         renderHistoryTable(data.productos);
         
+        // Initialize Lucide icons on newly injected HTML
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+        
     } catch (error) {
         console.error("No se pudo cargar la data: ", error);
         document.getElementById('cards-container').innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--danger); background: var(--glass-bg); border-radius: var(--border-radius-md);">
+            <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--danger-color); background: var(--surface-color); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <i data-lucide="alert-circle" style="width: 32px; height: 32px; margin-bottom: 1rem;"></i>
                 <p>Error al cargar los datos de precios. Por favor, intente más tarde.</p>
-                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem;">${error.message}</p>
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">${error.message}</p>
             </div>
         `;
+        if (window.lucide) window.lucide.createIcons();
     }
 };
 
 const updateSummary = (data) => {
     const lastUpdateEl = document.getElementById('last-update');
     if (lastUpdateEl && data.ultima_actualizacion) {
-        lastUpdateEl.textContent = `Última actualización: hace ${getRelativeTime(data.ultima_actualizacion).replace('hace ', '')}`;
+        lastUpdateEl.innerHTML = `<i data-lucide="clock"></i> Actualizado hace ${getRelativeTime(data.ultima_actualizacion).replace('hace ', '')}`;
     }
 };
 
@@ -124,12 +131,12 @@ const renderCards = (productos) => {
             
             if (current < previous) {
                 const diff = previous - current;
-                variationHtml = `<div class="price-variation variation-down">↓ ${formatCLP(diff)}</div>`;
+                variationHtml = `<div class="price-variation variation-down"><i data-lucide="arrow-down-right"></i> ${formatCLP(diff)}</div>`;
             } else if (current > previous) {
                 const diff = current - previous;
-                variationHtml = `<div class="price-variation variation-up">↑ ${formatCLP(diff)}</div>`;
+                variationHtml = `<div class="price-variation variation-up"><i data-lucide="arrow-up-right"></i> ${formatCLP(diff)}</div>`;
             } else {
-                variationHtml = `<div class="price-variation variation-none">- Sin cambio</div>`;
+                variationHtml = `<div class="price-variation variation-none"><i data-lucide="minus"></i> Sin cambio</div>`;
             }
         }
         
@@ -142,7 +149,7 @@ const renderCards = (productos) => {
                     <div class="store-name">${product.tienda}</div>
                     <div class="product-name">${product.nombre}</div>
                 </div>
-                ${isBest ? '<div class="best-badge">👑 Mejor Precio</div>' : ''}
+                ${isBest ? '<div class="best-badge"><i data-lucide="star"></i> Mejor Precio</div>' : ''}
             </div>
             <div class="price-container">
                 <div class="price" id="price-${id}">
@@ -164,8 +171,8 @@ const renderChart = (productos) => {
     const ctx = document.getElementById('priceChart').getContext('2d');
     
     const colors = {
-        'falabella': '#6366f1', // indigo
-        'maconline': '#22d3ee'  // cyan
+        'falabella': '#34c759', // Green
+        'maconline': '#0071e3'  // Apple Blue
     };
     
     const datasets = [];
@@ -183,23 +190,16 @@ const renderChart = (productos) => {
         datasets.push({
             label: product.tienda,
             data: data,
-            borderColor: colors[id] || '#8b5cf6',
-            backgroundColor: (context) => {
-                const ctx = context.chart.ctx;
-                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                const color = colors[id] || '#8b5cf6';
-                gradient.addColorStop(0, `${color}40`);
-                gradient.addColorStop(1, `${color}00`);
-                return gradient;
-            },
+            borderColor: colors[id] || '#1d1d1f',
+            backgroundColor: 'transparent',
             borderWidth: 2,
-            pointBackgroundColor: colors[id] || '#8b5cf6',
-            pointBorderColor: '#0a0a0f',
+            pointBackgroundColor: '#ffffff',
+            pointBorderColor: colors[id] || '#1d1d1f',
             pointBorderWidth: 2,
             pointRadius: 4,
             pointHoverRadius: 6,
-            fill: true,
-            tension: 0.4
+            fill: false,
+            tension: 0.1
         });
     });
 
@@ -207,8 +207,8 @@ const renderChart = (productos) => {
         priceChart.destroy();
     }
     
-    Chart.defaults.color = '#94a3b8';
-    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = '#86868b';
+    Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
     
     priceChart = new Chart(ctx, {
         type: 'line',
@@ -225,16 +225,18 @@ const renderChart = (productos) => {
                     position: 'top',
                     labels: {
                         usePointStyle: true,
-                        boxWidth: 8
+                        boxWidth: 8,
+                        padding: 20
                     }
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(10, 10, 15, 0.9)',
-                    titleColor: '#f8fafc',
-                    bodyColor: '#e2e8f0',
-                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    titleColor: '#1d1d1f',
+                    bodyColor: '#1d1d1f',
+                    borderColor: 'rgba(0, 0, 0, 0.1)',
                     borderWidth: 1,
                     padding: 12,
+                    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
                     callbacks: {
                         label: function(context) {
                             let label = context.dataset.label || '';
@@ -260,14 +262,19 @@ const renderChart = (productos) => {
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.05)',
-                        borderColor: 'rgba(255, 255, 255, 0.1)'
+                        display: false
+                    },
+                    border: {
+                        display: false
                     }
                 },
                 y: {
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.05)',
-                        borderColor: 'rgba(255, 255, 255, 0.1)'
+                        color: 'rgba(0, 0, 0, 0.04)',
+                        drawBorder: false,
+                    },
+                    border: {
+                        display: false
                     },
                     ticks: {
                         callback: function(value) {
@@ -325,6 +332,11 @@ const renderHistoryTable = (productos) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initial icon creation for static HTML
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+    
     renderDashboard();
     
     // Auto-refresh every 5 minutes
