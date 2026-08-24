@@ -1,11 +1,11 @@
 {
-  "ultima_actualizacion": "2026-08-24T09:48:39.621337-04:00",
+  "ultima_actualizacion": "2026-08-24T10:37:41.726537-04:00",
   "productos": {
     "falabella": {
       "nombre": "iPhone 16e 128GB",
       "tienda": "Falabella",
       "url": "https://www.falabella.com/falabella-cl/product/prod133540251/Apple-IPhone-16e-128GB/17406441",
-      "precio_actual": 539990,
+      "precio_actual": 549990,
       "historial": [
         {
           "fecha": "2026-08-02T10:00:00-04:00",
@@ -22,6 +22,10 @@
         {
           "fecha": "2026-08-17T12:23:03.108311-04:00",
           "precio": 539990
+        },
+        {
+          "fecha": "2026-08-24T10:37:41.726537-04:00",
+          "precio": 549990
         }
       ]
     },
