@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-10-04T21:33:48.134165-04:00",
+  "ultima_actualizacion": "2026-10-05T04:15:46.442281-04:00",
   "productos": {
     "falabella": {
       "nombre": "iPhone 16e 128GB",
@@ -37,7 +37,7 @@
       "nombre": "iPhone 16e 128GB",
       "tienda": "MacOnline",
       "url": "https://www.maconline.com/products/iphone-16e#default_sku=MD1Q4BE/A",
-      "precio_actual": 699990,
+      "precio_actual": 629990,
       "historial": [
         {
           "fecha": "2026-08-01T10:00:00-04:00",
@@ -62,6 +62,10 @@
         {
           "fecha": "2026-09-11T15:25:54.521531-04:00",
           "precio": 699990
+        },
+        {
+          "fecha": "2026-10-05T04:15:46.442281-04:00",
+          "precio": 629990
         }
       ]
     }
